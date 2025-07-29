@@ -1,0 +1,23 @@
+{
+  "name": "bajaj-finserv-hiring-api-ts",
+  "version": "1.0.0",
+  "description": "A REST API for the Chitkara campus hiring challenge, built with TypeScript.",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/server.js",
+    "dev": "npx tsc -w & nodemon dist/server.js"
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.12",
+    "nodemon": "^3.1.0",
+    "typescript": "^5.4.5"
+  }
+}
