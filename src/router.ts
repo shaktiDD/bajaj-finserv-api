@@ -3,27 +3,21 @@ import Joi from 'joi';
 
 const router = express.Router();
 
-/* -------------------------------------------------------------------------- */
-/*                               Joi validator                                */
-/* -------------------------------------------------------------------------- */
+
 const schema = Joi.object({
   data: Joi.array()
-    .items(Joi.string())          // every element must be a string
+    .items(Joi.string())          
     .required()
 });
 
-/* -------------------------------------------------------------------------- */
-/*                               Static details                               */
-/* -------------------------------------------------------------------------- */
+
 const USER_ID   = 'shakti_dubey_20102003';
 const EMAIL     = 'shakti2282.be22@chitkara.edu.in';
 const ROLL_NUM  = '2210992282';
 
-/* -------------------------------------------------------------------------- */
-/*                                   Route                                    */
-/* -------------------------------------------------------------------------- */
+
 router.post('/', (req: Request, res: Response) => {
-  /* 1️⃣  Validate ----------------------------------------------------------- */
+ 
   const { error, value } = schema.validate(req.body);
   if (error) {
     return res.status(400).json({
@@ -32,19 +26,19 @@ router.post('/', (req: Request, res: Response) => {
     });
   }
 
-  /* 2️⃣  Helpers ------------------------------------------------------------ */
+  
   const isNumeric = (s: string) => !isNaN(Number(s));
   const isAlpha   = (s: string) => /^[A-Za-z]+$/.test(s);
 
-  /* 3️⃣  Buckets ------------------------------------------------------------ */
+  
   const odd:  string[] = [];
   const even: string[] = [];
   const alph: string[] = [];
   const spec: string[] = [];
   let sum = 0;
 
-  /* 4️⃣  Collect everything ------------------------------------------------- */
-  const alphaChars: string[] = [];            // individual letters
+
+  const alphaChars: string[] = [];           
 
   for (const raw of value.data) {
     const str = String(raw);
@@ -61,7 +55,7 @@ router.post('/', (req: Request, res: Response) => {
     }
   }
 
-  /* 5️⃣  Build concat_string ----------------------------------------------- */
+  
   const reversed = alphaChars.reverse();
   let concat_string = '';
   reversed.forEach((ch, idx) => {
@@ -70,7 +64,7 @@ router.post('/', (req: Request, res: Response) => {
       : ch.toLowerCase();
   });
 
-  /* 6️⃣  Respond ------------------------------------------------------------ */
+
   res.status(200).json({
     is_success: true,
     user_id: USER_ID,
